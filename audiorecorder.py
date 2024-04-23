@@ -1,8 +1,8 @@
 import requests
+import io
 from pydub import AudioSegment
 
-
-def download_mp3_stream(url, output_file):
+def download_mp3_stream(url, output_file, duration_seconds):
     try:
         # Den MP3-Stream von der URL herunterladen
         response = requests.get(url, stream=True)
@@ -10,9 +10,18 @@ def download_mp3_stream(url, output_file):
 
         # Bytes des Streams speichern
         stream_bytes = bytearray()
-        for chunk in response.iter_content(chunk_size=1024):
+
+        # Aufnahmezeit in Millisekunden umrechnen
+        duration_ms = duration_seconds * 1000
+
+        # Datenchunks sammeln, bis die gewünschte Dauer erreicht ist
+        total_duration = 0
+        for chunk in response.iter_content(chunk_size=8):
             if chunk:
                 stream_bytes.extend(chunk)
+                total_duration += len(chunk) * 8 / 16000  # Annäherung der Dauer in Sekunden
+                if total_duration >= duration_ms:
+                    break
 
         # Bytes in AudioSegment umwandeln
         audio = AudioSegment.from_file(io.BytesIO(stream_bytes))
@@ -26,7 +35,9 @@ def download_mp3_stream(url, output_file):
         print("Ein Fehler ist aufgetreten:", str(e))
 
 
-# Beispielaufruf
-url = "URL_DES_MP3_STREAMS"
+# Beispielaufruf mit einer beispielhaften MP3-URL und einer Aufnahmedauer von 10 Sekunden
+url = "http://st01.dlf.de/dlf/01/128/mp3/stream.mp3"
 output_file = "aufnahme.mp3"
-download_mp3_stream(url, output_file)
+duration_seconds = 10
+download_mp3_stream(url, output_file, duration_seconds)
+
