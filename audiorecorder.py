@@ -2,6 +2,16 @@ import requests
 import io
 from pydub import AudioSegment
 
+
+@click.command()
+def demo():
+    print('demo')
+
+if __name__ == '__main__':
+    demo()
+
+
+
 def download_mp3_stream(url, output_file, duration_seconds):
     try:
         # Den MP3-Stream von der URL herunterladen
@@ -40,4 +50,13 @@ url = "http://st01.dlf.de/dlf/01/128/mp3/stream.mp3"
 output_file = "aufnahme.mp3"
 duration_seconds = 10
 download_mp3_stream(url, output_file, duration_seconds)
+
+# Original-Code von Preuss
+start_time = datetime.datetime.now()
+
+
+with urllib.request.urlopen('http://st01.dlf.de/dlf/01/128/mp3/stream.mp3') as stream:
+    with open('stream.mp3', 'wb') as outfile:
+        while (datetime.datetime.now() - start_time).seconds < 10:
+            outfile.write(stream.read(128))
 
