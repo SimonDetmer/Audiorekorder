@@ -1,23 +1,26 @@
-# Audiorekorder
-Audiorekorder um mp3-Streams aus dem Internet aufzunehmen
+# Audio Recorder
+An audio recorder for capturing MP3 streams from the internet.
 
-Dabei sollen folgende Einstellungen parametrisiert / eingestellt werden können:
+The following settings should be customizable:
 
-    URL des Streams
-    Dauer der Aufnahme
-    Dateiname des gespeicherten Streams
-    Blockgröße beim Lesen/Schreiben
-    Optional: Anzeige aller gespeicherten Streams
-    ggf. Anzeige von Hilfe-/ Usage-Infos
+- URL of the stream
+- Recording duration
+- File name for the saved stream
+- Block size for read/write operations
+- Optional: Display of all saved streams
+- Optional: Display of help/usage information
 
-Erstellen Sie einen CLI-Audiorekorder (Sie sollten gängige Packages verwenden, z. B. Argparse, Click, Docopt, Invoke, ..)
-Aufruf:
+Create a CLI audio recorder (you should use common packages, such as Argparse, Click, Docopt, Invoke, ..).
 
-  cli_audiorecorder.py <url> [--filename=<name>] [--duration=<time>] [--blocksize=<size>]
+Invocation:
 
+```bash
+cli_audiorecorder.py <url> [--filename=<name>] [--duration=<time>] [--blocksize=<size>]
+```
 
-Beispiel für CLI:
+Example of CLI usage:
 
+```bash
 Usage:
   cli_audiorecorder.py <url> [--filename=<name>] [--duration=<time>] [--blocksize=<size>]
   cli_audiorecorder.py -h | --help
@@ -27,3 +30,4 @@ Options:
   --filename=<name>     Name of recording [default: myRadio].
   --duration=<time>     Duration of recording in seconds [default: 30].
   --blocksize=<size>    Block size for read/write in bytes [default: 64].
+```
