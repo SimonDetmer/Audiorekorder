@@ -1,6 +1,12 @@
 #!/usr/bin/env python
 
 """
+Author: Simon Detmer
+Date: April 29, 2024
+Description: Audiorekorder mit dessen Hilfe mp3-Streams aus dem Internet aufgenommen werden können.
+"""
+
+"""
 Installierte Module:
 - urllib.request: Zur Verwendung von URLs
 - datetime: Zur Verwendung von Datums- und Zeitobjekten
