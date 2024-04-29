@@ -30,7 +30,7 @@ if __name__ == '__main__':
     record_stream()
 
 
-#Beispielaufruf
+#Beispielaufruf_
 #python audiorecorder2.py --duration 20 --filename recording.mp3 --blocksize 256 http://example.com/stream
 
 #Anzeige der gespeicherten Streams
